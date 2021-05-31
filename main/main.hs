@@ -3,9 +3,6 @@ module Core where
 import Data.Map (Map)
 import qualified Data.Map as Map
 
-myMap :: Map String Int
-myMap = Map.fromList [("a", 1), ("b", 2)]
-
 -- Default Map: Takes a default value and a sequence of keys and constructs a map.
 defaultMap :: Ord b => a -> [b] -> Map b a
 defaultMap v xs = Map.fromList [(x, v) | x <- xs]
@@ -33,3 +30,39 @@ count xs = sum  [1 | x <- xs]
 -- Restriction: Sum
 sumItAll :: Num a => [a] -> a
 sumItAll xs = foldr (+) 0 xs
+
+-- oddNumber: Returns only the odd number of a sequence.
+-- Restriction: length
+oddNumber :: Integral a => [a] -> [a]
+oddNumber xs = filter odd xs
+
+-- reverseSeq: Reverses a sequence.
+-- Restriction: reverse
+reverseSeq :: Ord a => [a] -> [a]
+reverseSeq [] = []
+reverseSeq [x] = [x]
+reverseSeq (x:xs) = (reverseSeq xs) ++ [x]
+
+-- palindromeDetector: Returns true if the given sequence is a palindrome.
+palindromeDetector :: Ord a => [a] -> Bool
+palindromeDetector xs = reverse xs == xs
+
+-- fibonacci: Return fibonacci number.
+fibonacci :: Int -> Int
+fibonacci 0 = 0
+fibonacci 1 = 1
+fibonacci n = fibonacci (n-1) + fibonacci (n-2)
+
+-- fibonacciSeq: Returns the first X fibonacci numbers.
+fibonacciSeq :: Int -> [Int]
+fibonacciSeq n = [fibonacci x |  x <- [0..n]] 
+
+-- maximumNumber: Takes a list and returns the maximum number.
+maximunNumber :: Ord a => [a] -> a
+maximunNumber [] = error "Error, empthy list"
+maximunNumber [x] = x
+maximunNumber (x:xs) = max x (maximunNumber xs)
+
+-- getTheCaps: Takes a string and returns a new string containing only the capital letters.
+
+-- duplicateSeq: Duplicates each element of a sequence.
